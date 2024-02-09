@@ -1,5 +1,5 @@
 // Store our API endpoint as queryUrl.
-let queryUrl = "data.json";
+let queryUrl = "../California_Fire_Perimeters_(all).geojson";
 let myMap = L.map("map", {
   center: [37.807246697771554, -122.43170695660642],
   zoom: 6
