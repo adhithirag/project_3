@@ -17,10 +17,13 @@ function addDropDown() {
   /////// creates dropdown
   let customControl = L.control({position: 'topleft'});
   customControl.onAdd = function (map) {
-    let div = L.DomUtil.create('div', 'info legend');
-    div.innerHTML = '<select class="wide-control"><option value="2010">2010</option><option value="2020">2020</option><option value="2000">2000</option></select>';
+    let div = L.DomUtil.create('div', 'slidecontainer');
+    // div.innerHTML = '<select class="wide-control">' +
+    //     '<option value="0">Select year</option>' +
+    //     '</select>';
+    div.innerHTML = "<input type=\"range\" min=\"2000\" max=\"2021\" value=\"1\" class=\"slider\" id=\"myRange\">\n";
     div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
-    div.firstChild.onchange = function () {
+    div.firstChild.oninput = function () {
       requestMarkers(this.value);
     };
     return div;
@@ -33,7 +36,7 @@ function addDropDown() {
 //requestMarkers(2020);
 
 function renderMarkers(data) {
-  L.clearLayers();
+ // L.clearLayers();
   L.geoJson(data, {
     style: function (feature) {
       return {
