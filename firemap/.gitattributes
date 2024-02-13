@@ -1,1 +1,2 @@
 db/fires_cal_features_mongo.json filter=lfs diff=lfs merge=lfs -text
+db/dataset.tar.gz filter=lfs diff=lfs merge=lfs -text
