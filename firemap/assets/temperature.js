@@ -1,4 +1,4 @@
-let temperatureURL = "../db/temperature/averaged_tempanomaly_";
+let temperatureURL = "http://127.0.0.1:8000/api/v1.0/temperatures/";
 
 var cfgTemperature = {
     // radius should be small ONLY if scaleRadius is true (or small radius is intended)
@@ -37,7 +37,7 @@ function renderTemperatureMarkers(data, year){
 function requestTemperatureMarkers(year){
 
     // calling the server
-    d3.json(`${temperatureURL}${year}.json`).then(function (data) {
+    d3.json(`${temperatureURL}${year}`).then(function (data) {
         renderTemperatureMarkers(data,year); // displaying the markers
         // closing the loader
 
