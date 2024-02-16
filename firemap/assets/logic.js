@@ -1,20 +1,34 @@
-// Store our API endpoint as queryUrl.
-let queryUrl = "http://127.0.0.1:8000/api/v1.0/find_features";
-var geoJsonObject = null;
-let myMap = L.map("map", {
-    center: [37.807246697771554, -122.43170695660642],
-    zoom: 6
+// Adding the tile layer
+let baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
 
+// Store our API endpoint as queryUrl.
+let myMap = L.map("map", {
+    center: [37.807246697771554, -122.43170695660642],
+    zoom: 6,
+    layers:[baseLayer,heatmapLayer]
+});
 
-// color
-var colorGenerator = d3.scaleSequential().domain([2000,2023]).range(["blue", "red"]);
+function addDropDown(min, max) {
+    /////// creates dropdown
+    let customControl = L.control({position: 'bottomleft'});
+    customControl.onAdd = function (map) {
+        let div = L.DomUtil.create('div', 'slider-main');
+        let sliderLblValues = L.DomUtil.create('div', 'slider-lbl-values', div);
+        let sliderValue = L.DomUtil.create('span', 'slider-value', sliderLblValues);
+        sliderValue.innerHTML = "1999";
+        let slider = L.DomUtil.create('div', 'slidecontainer', div);
+        slider.innerHTML = "<input type=\"range\" min=\"" + min + "\" max=\"" + max + "\" value=\"1\" class=\"slider\" id=\"myRange\"/>";
+        slider.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
+        slider.firstChild.onmouseup = function () {
+            sliderValue.innerHTML = (this.value);
+            requestMarkers(this.value);
+            requestTemperatureMarkers(this.value);
+        };
+        return div;
+    };
 
-// Adding the tile layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(myMap);
-
-
-initFireLogic();
-initTemperatureLogic();
+    customControl.addTo(myMap); // Add the custom control to your map
+}
+addDropDown(1999, 2022);
