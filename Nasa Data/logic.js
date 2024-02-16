@@ -33,6 +33,8 @@ let combinedYears = {
   "2023": year23
 };
 
+//console.log(JSON.stringify(combinedYears, null, 2));
+
 var cfg = {
   // radius should be small ONLY if scaleRadius is true (or small radius is intended)
   "radius": 4,
@@ -42,7 +44,7 @@ var cfg = {
   // if set to false the heatmap uses the global maximum for colorization
   // if activated: uses the data maximum within the current map boundaries 
   //   (there will always be a red spot with useLocalExtremas true)
-  "useLocalExtrema": true,
+  "useLocalExtrema": false,
   // which field name in your data represents the latitude - default "lat"
   latField: 'lat',
   // which field name in your data represents the longitude - default "lng"
@@ -60,18 +62,22 @@ function filteredData(data){
   }
 };
 
+var heatmapLayer = new HeatmapOverlay(cfg);
+
 function dataMap(year){
   console.log(combinedYears[year])
-  var heatmapLayer = new HeatmapOverlay(cfg);
+  
   heatmapLayer.setData(filteredData(combinedYears[year]));
-  var map = new L.Map('map', {
-    center: new L.LatLng(25.6586, -80.3568),
-    zoom: 4,
-    layers: [baseLayer, heatmapLayer]
-  });
+
 }
 
-dataMap(2001);
+var map = new L.Map('map', {
+  center: new L.LatLng(25.6586, -80.3568),
+  zoom: 4,
+  layers: [baseLayer, heatmapLayer]
+});
+
+
 //addDropDown();
 
 // function addDropDown() {
@@ -86,6 +92,7 @@ dataMap(2001);
 //     div.firstChild.onmousedown = div.firstChild.ondblclick = L.DomEvent.stopPropagation;
 //     div.firstChild.oninput = function () {
 //       requestMarkers(this.value);
+//       dataMap(this.value);
 //     };
 //     return div;
 //   };
