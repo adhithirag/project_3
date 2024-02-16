@@ -1,6 +1,6 @@
 let year23 = {
     "time": "2023",
-    "max":6,
+    "max": 8,
     "data": [
         {
             "lat": -89.0,
