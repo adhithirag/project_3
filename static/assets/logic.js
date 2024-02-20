@@ -3,6 +3,7 @@ let baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 });
 
+
 let myMap = L.map("map", {
     center: [37.807246697771554, -122.43170695660642],
     zoom: 6,
@@ -47,6 +48,7 @@ function setUpMap(){
         overlayMaps['Temperature'] = heatmapLayer;
     }
     myMap.layerControl = L.control.layers(null, overlayMaps).addTo(myMap);
+    
 }
 
 requestMarkers(2000);
