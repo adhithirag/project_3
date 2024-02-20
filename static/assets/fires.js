@@ -1,8 +1,12 @@
 let queryUrl = "http://127.0.0.1:8000/api/v1.0/find_features";
-var geoJsonObject = null;
+
 
 // color
 var colorGenerator = d3.scaleSequential().domain([2000,2023]).range(["blue", "red"]);
+
+var geoJsonObject = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});;
 
 // this will display the markers
 function renderMarkers(data,year) {
@@ -19,6 +23,7 @@ function renderMarkers(data,year) {
         }
     });
     geoJsonObject.addTo(myMap);
+    setUpMap();
 }
 
 // Perform a GET request to the query URL/
