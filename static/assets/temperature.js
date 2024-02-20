@@ -32,6 +32,7 @@ function filteredData(data){
 
 function renderTemperatureMarkers(data, year){
     heatmapLayer.setData(filteredData(data));
+    legend.addTo(myMap);
 }
 
 function requestTemperatureMarkers(year){
@@ -51,3 +52,34 @@ function requestTemperatureMarkers(year){
 
 }
 
+var legend = L.control({position: 'bottomright'});
+
+legend.onAdd = function (map) {
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 1, 2, 3, 4, 5], // The range of your data
+        labels = [],
+        from, to;
+
+    // Loop through our intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        from = grades[i];
+        to = grades[i + 1];
+
+        labels.push(
+            '<i style="background:' + getColor(from + 1) + '"></i> ' +
+            from + (to ? '&ndash;' + to : '+'));
+    }
+
+    div.innerHTML = labels.join('<br>');
+    return div;
+};
+
+// Define the getColor function
+function getColor(d) {
+    return d > 5 ? 'darkred' :
+           d > 4 ? 'red' :
+           d > 3 ? 'yellow' :
+           d > 2 ? 'green' :
+           d > 1 ? 'cyan' :
+                    'blue'; // Add more colors as needed
+}
