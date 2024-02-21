@@ -17,3 +17,10 @@ html {
   height: 34px;
 }
 
+.range input {
+  margin-top:10%;
+  -webkit-transform:rotate(90deg);
+  -moz-transform:rotate(90deg);
+  -o-transform:rotate(90deg);
+  transform:rotate(270deg);
+} 

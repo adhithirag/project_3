@@ -29,7 +29,6 @@ function addDropDown() {
   customControl.addTo(myMap); // Add the custom control to your map
 }
 
-
 //requestMarkers(2020);
 
 function renderMarkers(data) {
