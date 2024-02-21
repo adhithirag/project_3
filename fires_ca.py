@@ -31,7 +31,7 @@ def find_features(year):
 
 @app.route("/api/v1.0/find_features/")
 def find_all_features():
-    filename = f"Fire_Graphs/Java_Graph/Ca_Fires_2000-2022.csv"
+    filename = f"db/Ca_Fires_2000-2022.csv"
     return send_file(filename, as_attachment=True)
 
 @app.route("/")
