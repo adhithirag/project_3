@@ -2,10 +2,11 @@
 __pycache__/
 *.py[cod]
 *$py.class
+# checkpoints ignore
 
 # C extensions
 *.so
-
+.ipynb_checkpoints
 # Distribution / packaging
 .Python
 build/
