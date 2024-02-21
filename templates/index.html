@@ -58,6 +58,28 @@
     </div>
 </div>
 
+<div id="temperature-slider" style="display: none;">
+    <!-- Slider main container -->
+    <div class="swiper temperature-swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+            <div class="swiper-slide">
+                <img src="{{ url_for('static', filename='pages/Temperature_Graphs/Value_Delta2000-2023.png') }}">
+            </div>
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- If we need scrollbar -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+</div>
+
 <div id="fire-slider-ext" style="display: none;">
     <iframe src="/page/fire_extended" width="100%"
             height="600px"></iframe>

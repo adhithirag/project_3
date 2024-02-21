@@ -101,10 +101,42 @@ function setupGraphSlider() {
             }
         }]
     }).addTo(myMap);
+
+    L.easyButton({
+        states: [{
+            stateName: 'display-graphs-ext',
+            icon: 'fa-thermometer-empty',
+            title: 'Display graph preview',
+            onClick: function (btn, map) {
+                Swal.fire({
+                    allowEscapeKey: true,
+                    html: d3.select("#temperature-slider").html(),
+                    showConfirmButton: false,
+                    title: "Temperature stats",
+                    width: '800px',
+                    didOpen: () => {
+                        const swiper = new Swiper('.temperature-swiper', {
+
+                            autoHeight:true,
+                            // Navigation arrows
+                            navigation: {
+                                nextEl: '.swiper-button-next',
+                                prevEl: '.swiper-button-prev',
+                            },
+
+                        });
+                    },
+                    showLoaderOnConfirm: false,
+                    allowOutsideClick: () => !Swal.isLoading()
+                });
+            }
+        }]
+    }).addTo(myMap);
 }
 
 function setUpExtendedD3Graphs() {
     L.easyButton({
+        position: 'bottomleft',
         states: [{
             stateName: 'display-graphs-ext',
             icon: 'fa-line-chart',
