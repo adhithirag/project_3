@@ -1,6 +1,6 @@
 // Function to load CSV and create plot
 function loadCSVAndCreatePlot(csvFile, targetDiv) {
-    Plotly.d3.json(csvFile, function (err, data) {
+    Plotly.d3.csv(csvFile, function (err, data) {
         if (err) {
             console.error('Error loading CSV:', err);
             return;
@@ -51,7 +51,7 @@ function loadCSVAndCreatePlot(csvFile, targetDiv) {
         });
 
         // Read the style JSON file
-        Plotly.d3.json('style.json', function (err, style) {
+        Plotly.d3.json('/static/assets/firegraph/style.json', function (err, style) {
             if (err) {
                 console.error('Error loading style JSON:', err);
                 return;
