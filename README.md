@@ -51,3 +51,8 @@ http://127.0.0.1:8000
 You must see the map, as shown in the following image:
 
 ![Map2](Map2.png)
+
+### Data Consideration and Conclusion
+We were able to find and analyze the data from the sources listed at CalFire and NASA to understand the correlation between the increase in temperature and acreage burned.
+From the interactable HTML the visualization can pop graphical visualizations, heat map outputs, and acreage polygons, dependant on year.
+In conclusion - our data defends our hypothesis that California temperature has increased creating a correlation between the increase in area burned.
